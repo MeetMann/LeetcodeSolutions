@@ -1,0 +1,22 @@
+class Solution {
+    static int count = 0;
+    public int hammingWeight(int n) {
+        int tempCounter = 0;
+        if (n < 2 && n == 1) {
+            count++;
+            tempCounter = count;
+            count = 0;
+            return tempCounter;
+        }
+        else if (n < 2 && n == 0) {
+            tempCounter = count;
+            count = 0;
+            return tempCounter;
+        }
+        int j = n % 2;
+        if (j == 1) {
+            count++;
+        }
+        return hammingWeight(n/2);
+    }
+}
