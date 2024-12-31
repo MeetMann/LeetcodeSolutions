@@ -1,0 +1,40 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int max = 0; 
+        int l = 0;
+        int r = height.length - 1;
+
+        while (l < r) {
+            if (max == 0 || max < Math.min(height[l], height[r]) * (r - l)) {
+                max = Math.min(height[l], height[r]) * (r - l);
+            }
+            if (height[r] < height[l]) {
+                r--;
+            }
+            else {
+                l++;
+            }
+        }
+
+        return max;
+    }
+}
+
+
+INITIAL SOLUTION: 
+
+class Solution {
+    public int maxArea(int[] height) {
+        int max = 0; 
+
+        for (int i = 0; i < height.length; i++) {
+            for (int j = i + 1; j < height.length; j++) {
+                if (max == 0 || max < (j - i) * (Math.min(height[j], height[i]))) {
+                    max = (j - i) * (Math.min(height[j], height[i]));
+                }
+            }
+        }
+
+        return max;
+    }
+}
