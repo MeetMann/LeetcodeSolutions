@@ -1,0 +1,13 @@
+class Solution {
+    public char kthCharacter(int k) {
+        StringBuilder sb = new StringBuilder("a");
+        while (sb.length() < k) {
+            StringBuilder temp = new StringBuilder(sb);
+            for (int i = 0; i < sb.length(); i++) {
+                temp.append((char) (sb.charAt(i) + 1)); 
+            }
+            sb = temp;
+        }
+        return sb.charAt(k - 1);
+    }
+}
