@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        if (board == null) {
+            return true;
+        }
+
+        HashSet<String> seen = new HashSet<>();
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    boolean checkRow = !seen.add(board[i][j] + " found in row " + i);
+                    boolean checkCol = !seen.add(board[i][j] + " found in col " + j);
+                    boolean checkBox = !seen.add(board[i][j] + " found in box " + i/3 + "-" + j/3);
+                    if (checkRow || checkCol || checkBox) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+}
