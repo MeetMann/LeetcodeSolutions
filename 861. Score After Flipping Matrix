@@ -1,0 +1,41 @@
+class Solution {
+    public int matrixScore(int[][] grid) {
+        if (grid.length == 1 && grid[0].length == 1) {
+            return 1;
+        }
+
+        for (int i = 0; i < grid.length; i++) {
+            if (grid[i][0] != 1) {
+                for (int j = 0; j < grid[0].length; j++) {
+                    grid[i][j] ^= 1;
+                }
+            }
+        }
+
+        for (int j = 0; j < grid[0].length; j++) {
+            int count = 0;
+            for (int i = 0; i < grid.length; i++) {
+                if (grid[i][j] == 1) {
+                    count++;
+                }
+            }
+            if (count < grid.length - count) {
+                for (int i = 0; i < grid.length; i++) {
+                    grid[i][j] ^= 1;
+                }
+            }
+        }
+
+        int result = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            String temp = "";
+            for (int j = 0; j < grid[0].length; j++) {
+                temp = temp.concat(String.valueOf(grid[i][j]));
+            }
+            result += Integer.parseInt(temp, 2);
+        }
+
+        return result;
+    }
+}
