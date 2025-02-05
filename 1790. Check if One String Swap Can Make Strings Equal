@@ -1,0 +1,38 @@
+class Solution {
+    public boolean areAlmostEqual(String s1, String s2) {
+        if (s1.equals(s2)) {
+            return true;
+        }
+
+        int left = 0;
+        int right = s1.length() - 1;
+
+        while (left < right) {
+            if (s1.charAt(left) == s2.charAt(left)) {
+                left++;
+            }
+
+            if (s1.charAt(right) == s2.charAt(right)) {
+                right--;
+            }
+
+            if (s1.charAt(left) != s2.charAt(left) && s1.charAt(right) != s2.charAt(right)) {
+                break;
+            }
+        }
+
+        StringBuilder newString1 = new StringBuilder(s1);
+        StringBuilder newString2 = new StringBuilder(s2);
+
+        newString1.setCharAt(left, s1.charAt(right));
+        newString1.setCharAt(right, s1.charAt(left));
+        newString2.setCharAt(left, s2.charAt(right));
+        newString2.setCharAt(right, s2.charAt(left));
+
+        if (newString1.toString().equals(s2) || newString2.toString().equals(s1)) {
+            return true;
+        }
+
+        return false;
+    }
+}
